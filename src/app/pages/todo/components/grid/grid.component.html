@@ -1,0 +1,8 @@
+<mat-grid-list cols="3" gutterSize="10" rowHeight="2:1">
+  <mat-grid-tile
+    [ngStyle]="{'background-color': getColor(i)}"
+    *ngFor="let todo of todos; let i = index" class="grid">
+    <h3 class="title">{{todo.title}}</h3>
+    <p>{{todo.description}}</p>
+  </mat-grid-tile>
+</mat-grid-list>

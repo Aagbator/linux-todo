@@ -1,0 +1,22 @@
+<form [formGroup]="todoForm" autocomplete="off" novalidate (ngSubmit)="createTodo(todoForm.value)">
+  <div mat-dialog-content>
+    <h2 mat-dialog-title>Create Todo</h2>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput>
+      <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+      <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
+      <mat-error *ngIf="hasError('title', 'maxlength')">Title should not be more than 30 characters</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" rows="3" matInput></textarea>
+      <mat-hint align="end">Not more then 80 characters long.</mat-hint>
+      <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
+      <mat-error *ngIf="hasError('description', 'maxlength')">Description should be not be more than 80 characters</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button [disabled]="!todoForm.valid" mat-raised-button mat-button color="accent">Add Todo</button>
+  </div>
+</form>

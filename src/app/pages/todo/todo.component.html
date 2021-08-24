@@ -1,0 +1,25 @@
+<div class="todo-container">
+  <header class="todo-header">
+    <h2 class="todo-title">Todo List</h2>
+    <div>
+      <button (click)="openDialog()" class="todo-btn" mat-raised-button color="accent">
+        <mat-icon aria-hidden="false" aria-label="list">add</mat-icon>
+        Add New Todo
+      </button>
+      <mat-button-toggle-group [(ngModel)]="layoutMode" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="list">
+          <mat-icon aria-hidden="false" aria-label="list">list</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="grid">
+          <mat-icon aria-hidden="false" aria-label="grid">apps</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </header>
+
+  <section class="todo-main">
+    <app-list *ngIf="isListLayout()"></app-list>
+    <app-grid *ngIf="isGridLayout()"></app-grid>
+  </section>
+
+</div>

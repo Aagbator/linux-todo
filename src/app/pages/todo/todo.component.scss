@@ -1,0 +1,22 @@
+.todo{
+  &-container{
+    padding-bottom: 5rem;
+  }
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 4.1rem;
+  }
+  &-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  &-main{
+    width: 90%;
+    margin: 0 auto;
+  }
+  &-btn {
+    margin-right: 1rem;
+  }
+}

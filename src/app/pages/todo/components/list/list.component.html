@@ -1,0 +1,69 @@
+
+<form class="filter-form">
+  <mat-form-field>
+    <input (keyup)="filterTodos($event)" matInput placeholder="Filter by Title or Description">
+  </mat-form-field>
+</form>
+
+<mat-card class="todo-card">
+  <ngx-datatable
+    #table
+    [columnMode]="'flex'"
+    [columns]="columns"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="50"
+    [limit]="10"
+    [rows]="filteredData">
+
+    <ngx-datatable-column [flexGrow]="1.5" name="Title" prop="title">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+        <mat-form-field>
+          <input matInput value="title"
+                 [disabled]="!isEditable[rowIndex]"
+                 [(ngModel)]="row.title" />
+        </mat-form-field>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [flexGrow]="2" name="Description" prop="description">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+        <mat-form-field>
+          <input matInput value="description"
+                 maxlength="80"
+                 [disabled]="!isEditable[rowIndex]"
+                 [(ngModel)]="row.description" />
+        </mat-form-field>
+
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- Column: Action -->
+    <ngx-datatable-column name="Action" [flexGrow]="0.5">
+      <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex"
+                   ngx-datatable-cell-template>
+
+        <!-- Edit -->
+        <button mat-button color="primary"
+                *ngIf="!this.isEditable[rowIndex]"
+                (click)="this.isEditable[rowIndex]=!this.isEditable[rowIndex]">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- Save -->
+        <button mat-button style="margin-right: .5rem" color="primary"
+                *ngIf="this.isEditable[rowIndex]"
+                (click)="saveTodo(row, rowIndex)">
+          <mat-icon>save</mat-icon>
+        </button>
+
+        <!-- Delete -->
+        <button mat-button color="warn"
+                *ngIf="this.isEditable[rowIndex]"
+                (click)="deleteTodo(row, rowIndex)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+    </ngx-datatable>
+</mat-card>

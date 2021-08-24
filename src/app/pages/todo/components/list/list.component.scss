@@ -1,0 +1,21 @@
+.todo-card{
+  background-color: white;
+  color: #aaaaaa;
+}
+::ng-deep.mat-form-field {
+  .mat-input-element {
+    color: #000;
+  }
+}
+
+::ng-deep.mat-form-field-disabled {
+  color: #444444;
+  .mat-form-field-underline {
+    display: none;
+  }
+}
+
+.filter-form {
+  .mat-form-field{ width: 100%; }
+}
+
